@@ -21,6 +21,7 @@
     String views;
 
     String attachment;
+
     // 우선 강의자료 하나라고 가정하고 구현하기, 나중에 시간나면 여러 강의자료고 바꿈
     //ArrayList<String> attachments = new ArrayList();
     //boolean isAttachment;
@@ -67,7 +68,7 @@
         date = rs.getString("Date");
     }
 
-    // 강의자료 있는지 확인
+    // 첨부파일 있는지 확인
     query = "select * from ATTACHMENTS where Cid='" + courseID + "'and Mno='" + materialNo + "'";
     rs = st.executeQuery(query);
 
@@ -83,6 +84,16 @@
 <hr>
 <p><%=content%></p>
 <hr>
-<p>첨부파일 : <%=attachment%></p>
+<%
+    if(attachment.equals("강의자료가 없습니다.")){
+%>
+<p>첨부파일 : 강의자료가 없습니다.</p>
+<%
+    }else{
+%>
+<p>첨부파일 : <a href="attachment_download.jsp?filename=<%=attachment%>"><%=attachment%></a></p>
+<%
+    }
+%>
 </body>
 </html>
