@@ -18,7 +18,7 @@
     try {
         Class.forName("com.mysql.jdbc.Driver");
     } catch (ClassNotFoundException e) {
-        System.err.println("Driver load 오류 : " + e.getMessage());
+        System.err.println("[강의자료 테이블] Driver load 오류 : " + e.getMessage());
     }
 
     // 2.연결
@@ -26,7 +26,7 @@
         con = DriverManager.getConnection(server + database + "?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false", user_name, password);
         System.out.println("[강의자료 테이블] 데이터베이스 연결 완료.");
     } catch(SQLException e) {
-        System.err.println("getConnection 오류 :" + e.getMessage());
+        System.err.println("[강의자료 테이블] getConnection 오류 :" + e.getMessage());
     }
     st = con.createStatement();
 %>
@@ -35,6 +35,12 @@
     <meta charset="utf-8">
 </head>
 <body>
+<%
+    // 요청을 받은 강의 아이디 저장
+    courseID = request.getParameter("courseID");
+%>
+<a href="material_addform.jsp?&cid=<%=courseID%>">강의자료 등록</a>
+
     <table id="tbMaterial">
         <tr>
             <td>선택</td>
@@ -44,20 +50,20 @@
             <td>조회수</td>
         </tr>
         <%
-            // 요청을 받은 강의 아이디 저장
-            courseID = request.getParameter("courseID");
+
             // 로그 출력
             System.out.println("[강의자료 테이블] 요청된 강의ID : " + courseID);
-            String query = "select * from MATERIALS where cid='" + courseID+"'";
 
+            String query = "select * from MATERIALS where cid='" + courseID+"'";
             rs = st.executeQuery(query);
-            
+
+            // 강의자료 글 목록 생성
             while(rs.next()){
         %>
         <tr>
             <td><input type="checkbox"></td>
             <td><%=rs.getString("Mno")%></td>
-            <td><%=rs.getString("Title")%></td>
+            <td width="100"><a href="material_content.jsp?mno=<%=rs.getString("Mno")%>&cid=<%=courseID%>"><%=rs.getString("Title")%></a></td>
             <td><%=rs.getString("Date")%></td>
             <td><%=rs.getString("Views")%></td>
         </tr>

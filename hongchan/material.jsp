@@ -17,7 +17,7 @@
     Statement st = null;
     ResultSet rs = null;
 
-    String profID = "3456789012";   // Given by request (김용혁 교수님 아이디)
+    String profID = "3456789012";   // Given by request or session(처음에 로그인 시 세션 등록) (김용혁 교수님 아이디)
 %>
 <%
     // 1.드라이버 로딩
@@ -79,8 +79,7 @@
     %>
 </select>
 <input id="btnGo" type="button" value="GO" onclick="clickBtnGo()"><br><br>
-
-<a href="">등록</a><br>
+<br>
 
 <iframe name="myframe" id="myframe" src="material_table.jsp" width="700" height="500"></iframe>
 <form name="materialInfoFrom">
