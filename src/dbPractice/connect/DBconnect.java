@@ -1,30 +1,28 @@
-package dbPractice.connect;
-
+package dbPractice.Connect;
 import java.sql.*;
- 
-public class DBconnect {
-	
+
+public class DBConnect {
     public static Connection getConnection() {
-    	Connection conn = null;
-    	String driverClass = "org.mariadb.jdbc.Driver";
-         try {
-            Class.forName(driverClass);
-         } catch (ClassNotFoundException e) { 
-             System.out.println("드라이버 로드 실패");
-         }
-         try {
-        	 conn = DriverManager.getConnection(
-                    "jdbc:mariadb://localhost:3306/UNIVERSITY",
-                    "root",
-                    "");            
-        	 if( conn != null ) {
-        		 System.out.println("DB 접속 성공");
-        	 }
-         } catch (SQLException e) {
-            System.out.println("DB 접속 실패");
-            e.printStackTrace();
-         }
-         return conn;
+    	
+    	  Connection conn = null;
+
+    		  String url = "jdbc:mysql://localhost:3306/UNIVERSITY?characterEncoding=UTF-8&serverTimezone=UTC"; // DB 주소 (DB 이름 UNIVERSITY)
+    		  String user = "root"; // DB user 이름
+    		  String password = ""; // DB password
+
+    		  try {
+    		  Class.forName("com.mysql.jdbc.Driver");
+    	  } catch (ClassNotFoundException e) {
+    		  System.out.println("드라이버 로드 실패");
+    	  }
+    	  try {
+    		  conn = DriverManager.getConnection(url, user, password);
+    		  //stmt = conn.createStatement();
+    	  }
+    	  catch(Exception e){
+    	    System.out.println("DB connection error! : " + e.getMessage());
+    	  }
+    	  return conn;
     }
     
     public static void close(Statement stmt) {

@@ -1,17 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="dbPractice.connect.DBconnect" %>
+<%@ page import="dbPractice.Connect.DBConnect" %>
 <%@ page import="dbPractice.note.Note_student" %>
 <%
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
 	
-	conn = DBconnect.getConnection();
+	conn = DBConnect.getConnection();
 	stmt = conn.createStatement();
 	conn.setAutoCommit(false);
 
-	String studentID = (String)session.getAttribute("Sid");
+	String studentID = (String)session.getAttribute("id");
 	int Nno = Integer.parseInt(request.getParameter("Nno"));
 %>
 <!DOCTYPE html>
