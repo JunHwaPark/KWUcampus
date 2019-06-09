@@ -1,4 +1,5 @@
 <%@ page import="java.sql.*"%>
+<%@ page import="javax.mail.*" %>
 <%@ page import="dbPractice.Connect.DBConnect" %>
 <%--
   Created by IntelliJ IDEA.
@@ -66,14 +67,14 @@
 		rs = stmt.executeQuery(sql3);
 	%>
 
-	<form action="sendAction.jsp" method="post">
+	<form action="SendMail.jsp" method="post">
 		<table>
 			<%
       out.println("<tr><th></th><th>학번</th><th>이름</th><th>학년</th><th>이메일</th><th>전화번호</th><th>부서</th></tr>");
       while(rs.next())
       {
         out.println("<tr>");
-          out.println("<td><input type='checkbox' name='Sids' value='" + rs.getString("Sid") + "'</td>");
+          out.println("<td><input type='checkbox' name='Tmail' value='" + rs.getString("Email") + "'</td>");
           out.println("<td>" + rs.getString("Sid") + "</td>");
           out.println("<td>" + rs.getString("Sname") + "</td>");
           out.println("<td>" + rs.getString("Year") + "</td>");
@@ -90,15 +91,19 @@
     %>
 		</table>
 		<br>
+			보내는 메일(@naver.com) <input type="text" name="Fmail">
+			비밀번호 <input type="password" name="Fpass">
 		<br>
+			제목 <input type="text" name="subject">
 		<br> <input type="text" name="Cid" value="<%=Cid%>"
 			style="display: none">
 		<p>
 			내용 :
 			<textarea rows="32" cols="16" size="512" name="contents"></textarea>
 		</p>
-		<input type="submit" value="쪽지보내기">
+		<input type="submit" value="메일보내기">
 	</form>
+	*보내는 메일은 네이버로 한정됩니다. "@naver.com"은 쓰지 않아도 되며, 네이버 메일에서 SMTP허용을 해야 사용 가능합니다.*
 
 </body>
 </html>

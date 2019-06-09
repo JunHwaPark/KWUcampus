@@ -38,7 +38,7 @@ try{
             session.setAttribute("id", rs.getString("Sid"));
             session.setAttribute("name", rs.getString("Sname"));
 
-            out.println("<script> location.href = 'material.jsp'; </script>"); // 이어질 페이지 설정
+            out.println("<script> location.href = 'Smaterial.jsp'; </script>"); // 이어질 페이지 설정
         }
         else
         {
