@@ -7,15 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24b4abf9-a6dd-4430-ab91-90e9fb798d44" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/.idea/web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Ucampus_war_exploded/Smanagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Ucampus_war_exploded/Smanagement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Ucampus_war_exploded/WEB-INF/classes/example/HelloWorld.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Ucampus_war_exploded/sendAction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Ucampus_war_exploded/sendAction.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ucampus/example/HelloWorld.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/example/HelloWorld.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Smanagement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/Smanagement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/sendAction.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/sendAction.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -69,8 +60,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/sendAction.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="96" column="52" lean-forward="true" selection-start-line="96" selection-start-column="52" selection-end-line="96" selection-end-column="52" />
+            <state relative-caret-position="165">
+              <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
               <folding>
                 <element signature="e#2337#2353#0#JAVA" expanded="true" />
               </folding>
@@ -264,12 +255,12 @@
       <workItem from="1559617481657" duration="371000" />
       <workItem from="1560418813440" duration="7734000" />
       <workItem from="1560432739970" duration="5961000" />
-      <workItem from="1560481435048" duration="3585000" />
+      <workItem from="1560481435048" duration="3793000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45355000" />
+    <option name="totallyTimeSpent" value="45563000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="50" y="38" width="865" height="832" extended-state="0" />
@@ -407,8 +398,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/sendAction.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="96" column="52" lean-forward="true" selection-start-line="96" selection-start-column="52" selection-end-line="96" selection-end-column="52" />
+        <state relative-caret-position="165">
+          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
           <folding>
             <element signature="e#2337#2353#0#JAVA" expanded="true" />
           </folding>
