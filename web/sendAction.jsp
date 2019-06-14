@@ -1,4 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*"%>
+
+<%@ page import="java.util.HashMap"%>
+<%@ page import="net.nurigo.java_sdk.api.Message" %>
+<%@ page import="net.nurigo.java_sdk.exceptions.CoolsmsException" %>
+<%@ page import="org.json.simple.JSONObject" %>
+
 <%--
 <%@ page import="java.sql.DriverManager" %>
   Created by IntelliJ IDEA.
@@ -7,57 +14,138 @@
   Time: 오후 3:37
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
   <head>
+    <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>$Title$</title>
+
+    <%
+      if(session.getAttribute("id") == null) // 로그인 중인지 확인
+      {
+        out.println("<script> alert('로그인이 되어 있지 않습니다.'); location.href = 'index.jsp'; </script>");
+      }
+
+      request.setCharacterEncoding("utf-8");
+      String []Sids = request.getParameterValues("Sids");
+
+      Connection conn = null;
+      Statement stmt = null;
+      ResultSet rs = null;
+
+      String []To = new String[65];
+
+      try {
+        String url = "jdbc:mysql://localhost:3306/UNIVERSITY?characterEncoding=UTF-8&serverTimezone=UTC"; // DB 주소 (DB 이름 UNIVERSITY)
+        String user = "root"; // DB user 이름
+        String password = "mysqlPracticeRoot@123"; // DB password
+
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection(url, user, password);
+        stmt = conn.createStatement();
+
+        String sql1 = "select Pno from student where Sid='";
+
+        for(int i = 0; i < Sids.length; i++)
+        {
+          rs = stmt.executeQuery(sql1 + Sids[i] + "';");
+          if(rs.next())
+          {
+            To[i] = rs.getString("Pno");
+          }
+        }
+
+      }
+      catch(Exception e){
+        out.println("DB connection error! : " + e.getMessage());
+      }
+
+      stmt.close();
+      rs.close();
+      conn.close();
+    %>
   </head>
 <%
-  Connection conn = null;
-  Statement stmt = null;
-  PreparedStatement pstmt = null;
-  ResultSet rs = null;
-  int cnt = 0;
-  String []Sids = request.getParameterValues("Sids");
-  try {
-    String url = "jdbc:mysql://localhost:3306/UNIVERSITY?characterEncoding=UTF-8&serverTimezone=UTC"; // DB 주소 (DB 이름 UNIVERSITY)
-    String user = "root"; // DB user 이름
-    String password = "mysqlPracticeRoot@123"; // DB password
+  String api_key = "NCSU7YMYZRJPTEHY";
+  String api_secret = "PBTHJHGLUQIB4VRMAFRA1ZY7RSVFCNIH";
 
-    Class.forName("com.mysql.jdbc.Driver");
-    conn = DriverManager.getConnection(url, user, password);
-    stmt = conn.createStatement();
+  long unixTime = System.currentTimeMillis() / 1000;
 
-    String sql = "INSERT INTO NOTE VALUES(?, ?, ?, ?);";
-    String sql2 = "SELECT COUNT(*) AS CNT FROM NOTE;";
-
-    pstmt = conn.prepareStatement(sql);
-
-    rs = stmt.executeQuery(sql2);
-    while(rs.next())
-      cnt = rs.getInt("CNT");
-  }
-  catch(Exception e){
-    out.println("DB connection error! : " + e.getMessage());
-  }
-try{
-
-  for(int i = 0; i < Sids.length; i++)
-  {
-    pstmt.setString(1, Sids[i]);
-    pstmt.setInt(2, cnt++);
-    pstmt.setString(3, (String) request.getParameter("contents"));
-    pstmt.setString(4, (String) request.getParameter("Cid"));
-    pstmt.executeUpdate();
-  }
-}
-catch (Exception e) {
-    out.println("Login error! : " + e.getMessage());
-}
+  String From="01055718002";
+  String text = request.getParameter("contents");
+  String type="SMS";
 %>
-<script>
-  location.href="Smanagement.jsp";
-</script>
+  <%
+    Message coolsms = new Message(api_key, api_secret);
+
+    for(int i = 0; i<Sids.length; i++)
+    {
+      HashMap<String, String> params = new HashMap<String, String>();
+
+      params.put("to", "01055718002"); // 수신번호
+      params.put("from", To[i]); // 발신번호
+      params.put("type", type); // Message type ( SMS, LMS, MMS, ATA )
+      params.put("text", text); // 문자내용
+      params.put("app_version", "JAVA SDK v1.2"); // application name and version
+
+      try{
+        JSONObject obj = (JSONObject) coolsms.send(params);
+
+        out.println("<script>");
+        out.println("alert('sms 발송 성공');");
+        out.println("alert('"+obj.toString()+"');");
+        out.println("location.href='Smanagemet.jsp';");
+        out.println("</script>");
+      }
+      catch (CoolsmsException e) {
+        out.println(e.getMessage());
+        out.println(e.getCode());
+
+        out.println("<script>");
+        out.println("alert('sms 발송 실패');");
+        out.println("alert('" + e.getMessage() + "');");
+        out.println("alert('" + e.getCode() + "');");
+        out.println("location.href='Smanagemet.jsp';");
+        out.println("</script>");
+      }
+    }
+  %>
+
+
+
+
+  <%
+    /*
+    try {
+
+      URL url = new URL("https://api.coolsms.co.kr/sms/2/sent?api_key=NCSU7YMYZRJPTEHY&signature=PBTHJHGLUQIB4VRMAFRA1ZY7RSVFCNIH");
+      URLConnection uconn = url.openConnection();
+
+      uconn.setUseCaches(false);
+
+      InputStream is = uconn.getInputStream();
+      Scanner scan = new Scanner(is);
+
+      int line = 1;
+
+      while(scan.hasNext()){
+        String str = scan.nextLine();
+        out.println(str + "<br>");
+      }
+      scan.close();
+    }
+    catch (MalformedURLException e){
+      out.println("The URL address is incorrect.<br>");
+      out.println(e.getMessage());
+
+    }
+    catch (IOException e){
+      out.println("It can't connect to the web page.<br>");
+      out.println(e.getMessage());
+    }
+     */
+  %>
+
   </body>
 </html>
