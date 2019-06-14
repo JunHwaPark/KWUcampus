@@ -77,11 +77,12 @@
   String type="SMS";
 %>
   <%
-    Message coolsms = new Message(api_key, api_secret);
-    JSONObject obj;
 
-    for(int i = 0; i<Sids.length; i++)
+
+
+    for(int i = 0; i < Sids.length; i++)
     {
+      Message coolsms = new Message(api_key, api_secret);
       HashMap<String, String> params = new HashMap<String, String>();
 
       params.put("to", "01055718002"); // 수신번호
@@ -90,21 +91,21 @@
       params.put("text", text); // 문자내용
       params.put("app_version", "JAVA SDK v1.2"); // application name and version
       try{
-        obj = (JSONObject) coolsms.send(params);
+          JSONObject obj = (JSONObject) coolsms.send(params);
       }
       catch (CoolsmsException e) {
         out.println("<script>");
         out.println("alert('sms 발송 실패');");
         out.println("alert('" + e.getMessage() + "');");
         out.println("alert('" + e.getCode() + "');");
-        out.println("location.href='Smanagemet.jsp';");
+        out.println("location.href='Smanagement.jsp';");
         out.println("</script>");
       }
     }
 
     out.println("<script>");
     out.println("alert('sms 발송 성공');");
-    out.println("location.href='Smanagemet.jsp';");
+    out.println("location.href='Smanagement.jsp';");
     out.println("</script>");
   %>
   </body>

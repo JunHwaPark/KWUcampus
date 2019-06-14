@@ -77,10 +77,12 @@
   String type="SMS";
 %>
   <%
-    Message coolsms = new Message(api_key, api_secret);
 
-    for(int i = 0; i<Sids.length; i++)
+
+
+    for(int i = 0; i < Sids.length; i++)
     {
+      Message coolsms = new Message(api_key, api_secret);
       HashMap<String, String> params = new HashMap<String, String>();
 
       params.put("to", "01055718002"); // 수신번호
@@ -88,64 +90,26 @@
       params.put("type", type); // Message type ( SMS, LMS, MMS, ATA )
       params.put("text", text); // 문자내용
       params.put("app_version", "JAVA SDK v1.2"); // application name and version
-
       try{
-        JSONObject obj = (JSONObject) coolsms.send(params);
-
-        out.println("<script>");
-        out.println("alert('sms 발송 성공');");
-        out.println("alert('"+obj.toString()+"');");
-        out.println("location.href='Smanagemet.jsp';");
-        out.println("</script>");
+          JSONObject obj = (JSONObject) coolsms.send(params);
+          out.println("<script>");
+          out.println("alert('실행');");
+          out.println("</script>");
       }
       catch (CoolsmsException e) {
-        out.println(e.getMessage());
-        out.println(e.getCode());
-
         out.println("<script>");
         out.println("alert('sms 발송 실패');");
         out.println("alert('" + e.getMessage() + "');");
         out.println("alert('" + e.getCode() + "');");
-        out.println("location.href='Smanagemet.jsp';");
+        out.println("location.href='Smanagement.jsp';");
         out.println("</script>");
       }
     }
+
+    out.println("<script>");
+    out.println("alert('sms 발송 성공');");
+    out.println("location.href='Smanagement.jsp';");
+    out.println("</script>");
   %>
-
-
-
-
-  <%
-    /*
-    try {
-
-      URL url = new URL("https://api.coolsms.co.kr/sms/2/sent?api_key=NCSU7YMYZRJPTEHY&signature=PBTHJHGLUQIB4VRMAFRA1ZY7RSVFCNIH");
-      URLConnection uconn = url.openConnection();
-
-      uconn.setUseCaches(false);
-
-      InputStream is = uconn.getInputStream();
-      Scanner scan = new Scanner(is);
-
-      int line = 1;
-
-      while(scan.hasNext()){
-        String str = scan.nextLine();
-        out.println(str + "<br>");
-      }
-      scan.close();
-    }
-    catch (MalformedURLException e){
-      out.println("The URL address is incorrect.<br>");
-      out.println(e.getMessage());
-
-    }
-    catch (IOException e){
-      out.println("It can't connect to the web page.<br>");
-      out.println(e.getMessage());
-    }
-     */
-  %>
-
   </body>
 </html>
