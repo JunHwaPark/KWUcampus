@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="java.util.ArrayList" %>
 <%!
     String server = "jdbc:mysql://localhost/"; // MySQL 서버 주소
     String database = "University"; // MySQL DATABASE 이름

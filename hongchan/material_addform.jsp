@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.sql.*" %>
 <%!
     String profID = "3456789012";   // Given by request ( or Session)
 %>
