@@ -13,7 +13,7 @@
   </head>
   <body>
   <script>
-    location.href = 'login.jsp';
+    location.href = '광운대학교.html';
   </script>
   </body>
 </html>

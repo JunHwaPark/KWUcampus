@@ -89,11 +89,6 @@
       params.put("app_version", "JAVA SDK v1.2"); // application name and version
       try{
           JSONObject obj = (JSONObject) coolsms.send(params);
-
-        out.println("<script>");
-        out.println("alert('"+To[i]+"');");
-        out.println("alert('"+obj.toString()+"');");
-        out.println("</script>");
       }
       catch (CoolsmsException e) {
         out.println("<script>");
