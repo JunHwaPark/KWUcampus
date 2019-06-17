@@ -77,24 +77,23 @@
   String type="SMS";
 %>
   <%
-
-
-
     for(int i = 0; i < Sids.length; i++)
     {
       Message coolsms = new Message(api_key, api_secret);
       HashMap<String, String> params = new HashMap<String, String>();
 
-      params.put("to", "01055718002"); // 수신번호
-      params.put("from", To[i]); // 발신번호
+      params.put("to", To[i]); // 수신번호
+      params.put("from", "01055718002"); // 발신번호
       params.put("type", type); // Message type ( SMS, LMS, MMS, ATA )
       params.put("text", text); // 문자내용
       params.put("app_version", "JAVA SDK v1.2"); // application name and version
       try{
           JSONObject obj = (JSONObject) coolsms.send(params);
-          out.println("<script>");
-          out.println("alert('실행');");
-          out.println("</script>");
+
+        out.println("<script>");
+        out.println("alert('"+To[i]+"');");
+        out.println("alert('"+obj.toString()+"');");
+        out.println("</script>");
       }
       catch (CoolsmsException e) {
         out.println("<script>");
