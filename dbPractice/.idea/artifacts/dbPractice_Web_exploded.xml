@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="dbPractice:Web exploded">
+    <output-path>$PROJECT_DIR$/classes/artifacts/dbPractice_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="dbPractice/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="dbPractice" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/WebContent/WEB-INF/lib/activation.jar" />
+          <element id="library" level="project" name="cos" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebContent/WEB-INF/lib/javaSDK-2.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebContent/WEB-INF/lib/mail.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebContent/WEB-INF/lib/mysql-connector-java-8.0.16.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/WebContent/WEB-INF/lib/json-simple-1.1.1.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
