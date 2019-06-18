@@ -8,7 +8,7 @@ public class DBConnect {
 
     		  String url = "jdbc:mysql://localhost:3306/UNIVERSITY?characterEncoding=UTF-8&serverTimezone=UTC"; // DB �ּ� (DB �̸� UNIVERSITY)
     		  String user = "root"; // DB user �̸�
-    		  String password = "wk9860wk"; // DB password
+    		  String password = ""; // DB password
 
     		  try {
     		  Class.forName("com.mysql.cj.jdbc.Driver");
