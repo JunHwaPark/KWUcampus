@@ -6,25 +6,25 @@
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="dbPractice.Connect.DBConnect" %>
 <%
-	Connection conn = null;
-	Statement stmt = null;
-	ResultSet rs = null;
-	
-	conn = DBConnect.getConnection();
-	stmt = conn.createStatement();
+    Connection conn = null;
+    Statement stmt = null;
+    ResultSet rs = null;
 
-	String profID = null;
-	String courseID;
-	String materialNo;
-	profID = (String)session.getAttribute("id");
+    conn = DBConnect.getConnection();
+    stmt = conn.createStatement();
 
-	String title;
-	String content;
-	String date;
-	String views;
+    String profID = null;
+    String courseID;
+    String materialNo;
+    profID = (String)session.getAttribute("id");
 
-	String attachment;
-	
+    String title;
+    String content;
+    String date;
+    String views;
+
+    String attachment;
+
     System.out.println("[첨부파일 다운로드] 시작 ==========");
     String fileName = request.getParameter("filename");
     System.out.println("[첨부파일 다운로드] 파일 이름 : " + fileName);
@@ -71,11 +71,11 @@
     in.close();
 
     System.out.println("[첨부파일 다운로드] 완료 ==========");
-    
-	//DB사용 후 close() 필수!
-	stmt.close();
-	rs.close();
-	conn.close();
+
+    //DB사용 후 close() 필수!
+    stmt.close();
+    rs.close();
+    conn.close();
 %>
 <html>
 <head>

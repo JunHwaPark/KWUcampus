@@ -42,6 +42,12 @@
     </script>
 </head>
 <body>
+<br>
+<a href="Pmaterial.jsp">강의자료 관리</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="Smanagement.jsp">메일 보내기</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="Smanagement_SMS.jsp">문자 보내기</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="logoutAction.jsp">로그아웃</a>
+<br><hr><br>
 <h2>강의 자료실</h2>
 <select name="subject" id="courseSelect">
     <%

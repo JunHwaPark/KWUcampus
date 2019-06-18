@@ -11,13 +11,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>$Title$</title>
+    <title>로그인</title>
   </head>
   <body>
         <form method="post" action="loginAction.jsp">
           <h3 style="text-align: center">로그인 화면</h3>
           <div class="form-group">
-            사용자 구분 <select name="user_code" id="user_code" tabindex="1">
+            사용자 구분 <select class="custom-select" name="user_code" id="user_code" tabindex="1">
             <option value="1" >학부생</option>
             <option value="2" >교수</option>
           </select>

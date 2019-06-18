@@ -6,14 +6,14 @@ public class DBConnect {
     	
     	  Connection conn = null;
 
-    		  String url = "jdbc:mysql://localhost:3306/UNIVERSITY?characterEncoding=UTF-8&serverTimezone=UTC"; // DB ÁÖ¼Ò (DB ÀÌ¸§ UNIVERSITY)
-    		  String user = "root"; // DB user ÀÌ¸§
-    		  String password = ""; // DB password
+    		  String url = "jdbc:mysql://localhost:3306/UNIVERSITY?characterEncoding=UTF-8&serverTimezone=UTC"; // DB ï¿½Ö¼ï¿½ (DB ï¿½Ì¸ï¿½ UNIVERSITY)
+    		  String user = "root"; // DB user ï¿½Ì¸ï¿½
+    		  String password = "wk9860wk"; // DB password
 
     		  try {
     		  Class.forName("com.mysql.cj.jdbc.Driver");
     	  } catch (ClassNotFoundException e) {
-    		  System.out.println("µå¶óÀÌ¹ö ·Îµå ½ÇÆÐ");
+    		  System.out.println("ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
     	  }
     	  try {
     		  conn = DriverManager.getConnection(url, user, password);

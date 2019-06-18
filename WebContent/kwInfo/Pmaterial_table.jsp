@@ -17,6 +17,8 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
 <%
@@ -25,13 +27,13 @@
 %>
 <a href="Pmaterial_addform.jsp?&cid=<%=courseID%>">강의자료 등록</a>
 
-    <table id="tbMaterial">
+    <table id="tbMaterial" class="table table-striped">
         <tr>
-            <td>선택</td>
-            <td>No</td>
-            <td>제목</td>
-            <td>등록일</td>
-            <td>조회수</td>
+            <th scope="col">선택</th>
+            <th scope="col">No</th>
+            <th scope="col">제목</th>
+            <th scope="col">등록일</th>
+            <th scope="col">조회수</th>
         </tr>
         <%
 

@@ -6,6 +6,8 @@
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <%@ page import="java.util.Enumeration" %>
 <%@ page import="java.io.File" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Locale" %>
 <%
 	Connection conn = null;
 	Statement stmt = null;
@@ -84,20 +86,26 @@
                 String query = "select * from MATERIALS where cid='" + courseID+"'";
                 rs = stmt.executeQuery(query);
 
-                // 강의 자료 글 번호 계산
-                while(rs.next()) {
-                    currentMno = rs.getInt("Mno");
-                }
-                currentMno++;
+        if(rs.next()){
+            // 이미 강의 자료가 있는 경우
+            rs.previous();
+            while(rs.next()) {
+                currentMno = rs.getInt("Mno");
+            }
+            currentMno++;
+        }
+        else{
+            currentMno = 1;
+        }
 
                 // 조회수 0으로 초기화 및 등록 시간 가져오기 / 등록 시간 추후 수정!!
-                views = 0;
-                /*
-                long time = System.currentTimeMillis();
-                SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd");
-                date = dayTime.format(new Date(time));
-                 */
-                date = "2019-06-02";
+        views = 0;
+        SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy.MM.dd", Locale.KOREA );
+        Date currentTime = new Date();
+        date = mSimpleDateFormat.format( currentTime );
+        System.out.println (date);
+
+        System.out.println (courseID + " " + currentMno + " " + title + " " + content + " " + date);
 
                 // 강의자료 데이터베이스에 새로운 글 등록
                 query = "insert into MATERIALS values ('"+ courseID + "',"+ currentMno + ",'"+ title + "','" + content + "','" + date + "'," + views + ")";
